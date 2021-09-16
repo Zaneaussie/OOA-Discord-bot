@@ -1,7 +1,7 @@
 """"
 Created by Zaneaussie 2021 - https://github.com/Zaneaussie
 Description:  OOA Discord bot
-Version: 3.0
+Version: 1.0
 """
 
 import os
@@ -11,6 +11,8 @@ import sys
 import discord
 
 GUILD = 'Order of Australia'
+
+welcome_channel_id = 712257564091351095
 
 
 if not os.path.isfile("config.json"):
@@ -33,6 +35,7 @@ try:
         print(f"Python version: {platform.python_version()}")
         print(f"Running on: {platform.system()} {platform.release()} ({os.name})")
         print("-------------------")
+        print('Connected awaiting commands from users...')
     
 
 
@@ -40,8 +43,8 @@ try:
     @client.event
     async def on_member_join(member):
         await member.create_dm()
-        await member.dm_channel.send(f'Hi {member.name}, welcome to Order Of Australia!')
-        
+        await member.dm_channel.send(f'Hi {member.name}, welcome to {guild.name}!')
+        await welcome_channel_id.send(f'Hi {member.name}, welcome to {guild.name}! Feel free to take a look around and come say Hi!')
 
 except Exception:
     print('The error was:', Exception)
